@@ -2,7 +2,8 @@
 
 A production-quality, premium aesthetic and family dental clinic showcase website designed with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **GSAP**, **Lenis Smooth Scroll**, and **Framer Motion**.
 
-🌐 **Live Demo Link**: [Live Site](https://clinicdemodevinedge.netlify.app/)
+> [!IMPORTANT]
+> ## 🔗 **[VISIT THE LIVE SITE](https://clinicdemodevinedge.netlify.app/)**
 
 ![Willow & Bright Preview](./public/preview.png)
 
