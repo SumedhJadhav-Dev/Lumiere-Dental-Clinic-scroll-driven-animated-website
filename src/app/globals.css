@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-teal: #0F5C56;
+  --color-accent-coral: #FF8B6B;
+  --color-secondary-mint: #D9F2ED;
+  --color-off-white: #FAF9F6;
+  --color-dark-charcoal: #1E292B;
+
+  --font-serif: var(--font-fraunces), serif;
+  --font-sans: var(--font-jakarta), sans-serif;
+}
+
+:root {
+  --background: #FAF9F6;
+  --foreground: #1E292B;
+}
+
+/* Base resets & styles */
+html {
+  scroll-behavior: initial;
+  background-color: #FAF9F6;
+  color: #1E292B;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #FAF9F6;
+  color: #1E292B;
+  font-family: var(--font-jakarta), sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom selection */
+::selection {
+  background-color: #FF8B6B;
+  color: #FAF9F6;
+}
+
+/* Hide native scrollbar for Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF9F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9F2ED;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF8B6B;
+}
+
+/* Custom cursor styling */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #0F5C56;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 139, 107, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              border-radius 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s, background-color 0.3s;
+}
+
+/* Drifting blurred blobs */
+@keyframes float-blob-1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(60px, -80px) scale(1.2); }
+  66% { transform: translate(-40px, 40px) scale(0.85); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes float-blob-2 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-60px, 70px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.float-blob-teal {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background-color: rgba(15, 92, 86, 0.06);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float-blob-1 28s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.float-blob-coral {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background-color: rgba(255, 139, 107, 0.05);
+  border-radius: 50%;
+  filter: blur(70px);
+  animation: float-blob-2 22s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animated center-outward drawing underline for nav links */
+.nav-link-hover {
+  position: relative;
+}
+
+.nav-link-hover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background-color: #FF8B6B;
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-link-hover:hover::after {
+  transform: scaleX(1);
+}
+
+/* Premium button with coral hover fill wipe from left */
+.btn-coral-wipe {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.2s ease, border-color 0.4s ease;
+}
+
+.btn-coral-wipe:active {
+  transform: scale(0.96);
+}
+
+.btn-coral-wipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF8B6B;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: -1;
+}
+
+.btn-coral-wipe:hover::before {
+  transform: scaleX(1);
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-strip {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-strip:hover {
+  animation-play-state: paused;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
